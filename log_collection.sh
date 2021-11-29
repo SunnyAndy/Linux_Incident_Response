@@ -177,4 +177,22 @@ $BUSY_BOX_CMD echo "authorized_ket"
 
 
 
+#LOGS 
+if [ ! -d $Machine_Info"_"$Start_Time/var/log/ ]; then
+        $BUSY_BOX_CMD mkdir -p  $Machine_Info"_"$Start_Time/var/log/
+        $BUSY_BOX_CMD cp -r   /var/log/*.log* $Machine_Info"_"$Start_Time/var/log/
+else
+        $BUSY_BOX_CMD cp -r   /var/log/*.log* $Machine_Info"_"$Start_Time/var/log
+fi
+
+
+if [ ! -d $Machine_Info"_"$Start_Time/etc/cron/ ]; then
+        $BUSY_BOX_CMD mkdir  -p $Machine_Info"_"$Start_Time/etc/cron/
+        $BUSY_BOX_CMD cp -r   /etc/cron*   $Machine_Info"_"$Start_Time/etc/cron/
+else
+
+        $BUSY_BOX_CMD cp -r   /etc/cron*   $Machine_Info"_"$Start_Time/etc/cron/
+fi
+
+
 
