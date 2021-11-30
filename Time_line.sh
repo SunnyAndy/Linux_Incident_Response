@@ -1,15 +1,6 @@
-# !/bin/bash 
-# Description 
-# Shell script to collect TimeStamp  given a directory 
-# Author Andy Lee   
-# Usage : ./TimeStamp_collect.sh  output_directoty   target_directory 
-# example : ./TimeStamp_collect.sh   /home/andy/testoutput   home/andy/sample
-
-# check configuration directory
+# !~/bin/bash 
 
 #########################################################  for timestamp part  ###### ########################################
-
-OUTPUT_F=$1
 
 echo "Tims Stamp collection "
 
@@ -17,7 +8,7 @@ TimeStamp_function()
 {
         local test_array;
         local test_num=0;
-        for test_file_name in $(ls  -a $1)
+        for test_file_name in $(find $1)
         do
                 test_array[${test_num}]=$test_file_name;
                 test_num=$((${test_num}+1))
@@ -25,17 +16,17 @@ TimeStamp_function()
         for ((i=0  ; i <${test_num} ; i++  ))
         do
                 printf   "${test_array[$i]},"  >> $OUTPUT_F/_table.csv 2>1&
-                stat  ${test_array[$i]}  | tail -4 | grep "Access" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }'  >> $OUTPUT_F/_table.csv
-                stat  ${test_array[$i]}  | tail -4 | grep "Modify" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }'  >> $OUTPUT_F/_table.csv
-                stat  ${test_array[$i]}  | tail -4 | grep "Change" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }'  >> $OUTPUT_F/_table.csv
+		Access_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Access" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }') 
+		Modify_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Modify" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }')  
+		Change_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Change" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }')
                 fs=$(df "${test_array[$i]}"  | tail -1 | awk '{print $1}')
                 crtime=$(sudo debugfs -R 'stat '${test_array[$i]}'' "${fs}"  2>/dev/null  | grep -oP  'crtime.*--\s*\K.*'  | awk -F ' ' '  {printf $5"-"$2"-"$3", "$4  "\n" }'     )
-                echo ${crtime}   >> $OUTPUT_F/_table.csv
+		echo $Access_time , $Modify_time , $Change_time ,$crtime >> $OUTPUT_F/_table.csv
         done
 
         echo   -e " "   >> $OUTPUT_F/_table.csv
 
-        return 1
+        return 0
 }
 
 
@@ -43,7 +34,7 @@ TimeStamp_function_no_birth_time()
 {
         local test_array;
         local test_num=0;
-        for test_file_name in $(ls -a  $1)
+        for test_file_name in $(find $1)
         do
                 test_array[${test_num}]=$test_file_name;
                 test_num=$((${test_num}+1))
@@ -51,19 +42,21 @@ TimeStamp_function_no_birth_time()
         for ((i=0  ; i <${test_num} ; i++  ))
         do
                 printf   "${test_array[$i]},"  >> $OUTPUT_F/_table.csv 2>1&
-                stat  ${test_array[$i]}  | tail -4 | grep "Access" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }'  >> $OUTPUT_F/_table.csv
-                stat  ${test_array[$i]}  | tail -4 | grep "Modify" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }'  >> $OUTPUT_F/_table.csv
-                stat  ${test_array[$i]}  | tail -4 | grep "Change" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} printf "\n" }'  >> $OUTPUT_F/_table.csv
+		Access_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Access" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }')
+		Modify_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Modify" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} }')
+		Change_time=$(stat  ${test_array[$i]}  | tail -4 | grep "Change" | awk -F ' ' '{for (i=2; i <= NF; i++) {printf $i", "} printf "\n" }')
+		echo    $Access_time ,$Modify_time , $Change_time   >> $OUTPUT_F/_table.csv
         done
 
-        echo   -e " "   >> $OUTPUT_F/_table.csv
+        echo   -e  " "   >> $OUTPUT_F/_table.csv
 
         return 1
+
 }
 
 
 Time_Function=""
-if test -z `command -v debugfs`
+if test  -z `command -v debugfs`
     then
         Time_Function=TimeStamp_function_no_birth_time
         echo "string is null "
@@ -74,17 +67,10 @@ if test -z `command -v debugfs`
 fi
 
 
-
-$Time_Function  $2
-
+echo "usage ./sh absoult target_folder  output_folder "
 
 
 
+OUTPUT_F=$2
 
-exit 
-
-
-
-
-
-
+$Time_Function  $1 
