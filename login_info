@@ -3,3 +3,16 @@ lastb    >lastb.txt
 lastlog  >lastlog.txt 
 
 
+netstat >netstat.txt
+
+/tmp
+find / -name  "*.eml"
+
+
+cp  -rf /var/log   ~/mydrive/
+
+cp ~/.bash_history 
+
+
+crontab -l >crontab.txt 
+cp -rf /rtc/rc.d/* ~/mydrive 
