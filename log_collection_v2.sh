@@ -160,6 +160,8 @@ _  service --status-all  >> $Machine_Info"_"$Start_Time/Running_services.txt
  echo "last"
  last >> $Machine_Info"_"$Start_Time/Last_logins.txt
 
+ echo "lastb"
+ lastb >> $Machine_Info"_"$Start_Time/Lastb.txt
 
 
 ## Userinformaitonm
