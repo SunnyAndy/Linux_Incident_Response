@@ -1,0 +1,28 @@
+step1 
+transger pcapng to zng 
+command 
+ C:\Users\andrew\Downloads\brimcap-v1.6.0.windows-amd64\brimcap\brimcap.exe  analyze   %CD%\%%x  > %CD%\%%x.zng  
+brimcap 載點:
+https://github.com/brimdata/brimcap/releases
+
+Step 2 if the pcap is too huge pleasw use the editpcap to divid it 
+"C:\Program Files (x86)\Wireshark\editcap.exe" -c 200000 input.pcap output.pcap 
+  ref :https://microchip.my.site.com/s/article/Split-large-PCAP-file-into-smaller-PCAP-files
+
+
+Step 3 run Zui 
+some basic command you may need 
+
+command: 
+conn | TCP  |  count()  by id.resp_h
+target IP
+
+
+
+# 統計 IP 地址及連接數並輸出
+local counts = conn | count() by id.resp_h;
+
+print "IP 地址\t連接數";
+foreach (counts) {
+    print fmt("%s\t%d", $key, $value);
+}
