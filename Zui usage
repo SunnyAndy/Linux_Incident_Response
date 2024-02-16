@@ -34,11 +34,3 @@ Step4 focus on a specific IP or C2
  id.resp_h==159.138.AA.XX  or  id.orig_h==159.138.AA.XX 
 
 
-command backup 
- id.resp_p==8080 |  id.resp_h!=59.124.120.177 | id.resp_h!=59.124.120.178 | count  () by  id.resp_h
-
-conn |  id.resp_h!=59.124.120.178  | proto=="smtp"
-conn |  id.resp_h!=59.124.120.178  | proto=="tcp"
-94.74.91.40 | id.resp_p==8080
- id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40  |   conn_state=="OTH" 
- id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40 | conn_state=="S3"
