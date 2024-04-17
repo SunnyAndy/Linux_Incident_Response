@@ -41,3 +41,9 @@ Step4 focus on a specific IP or C2
  id.resp_h==159.138.AA.XX  or  id.orig_h==159.138.AA.XX 
 
 
+語法參考
+
+
+
+id.resp_h==IP1  or  id.orig_h==IP1
+or id.resp_h==IP2  or  id.orig_h==IP@      |  geo.orig.country_code=="TW"   or  geo.resp.country_code=="TW"   
