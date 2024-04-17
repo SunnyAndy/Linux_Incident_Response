@@ -2,6 +2,13 @@ step1
 transger pcapng to zng 
 command 
  C:\Users\andrew\Downloads\brimcap-v1.6.0.windows-amd64\brimcap\brimcap.exe  analyze   %CD%\%%x  > %CD%\%%x.zng  
+
+
+
+for /F %%x in ('dir  /b  %CD% '  ) do (
+  C:\Users\andrew\Downloads\brimcap-v1.6.0.windows-amd64\brimcap\brimcap.exe  analyze   %CD%\%%x  > %CD%\%%x.zng
+)
+pause
 brimcap 載點:
 https://github.com/brimdata/brimcap/releases
 
