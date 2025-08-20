@@ -56,3 +56,41 @@ child process
 ppid 0 
 pid 1 
 pid 2 
+
+
+
+loginctl session-statusa 
+loginctl user-statys demo 
+
+
+history 
+HISTSIZE:HISTFILESIZE
+HISTCONTROL:
+history -c 
+rm ~/.history 
+
+
+sudo :
+var/log/auth.log
+journalctl.log 
+
+
+
+ss:
+netstat  sudo apt install et-tools 
+
+ss -tupn 
+ss -tupnl 
+
+lsof -i  
+
+
+etc/hosts 
+
+/etc/nsswitch.con 
+    hosts:files dns 
+
+
+
+lsof 
+list open file 
