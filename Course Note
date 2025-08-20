@@ -1,0 +1,58 @@
+UID :使用者唯一識別碼
+superuser root uid =0 
+system user 1~999 
+normal user 1000+ 
+/etc/passwd --> gusername:password:UIDLGID:userinformation:homedirectory:login shell 
+
+
+GID:群組唯一識別碼
+
+
+hashed password 
+* or ! 
+$id$salt$hasshed_passeord 
+id= 1 ND5 5 SHA256 
+6 SHA256 
+y=yescrypt 
+
+
+
+FHS 
+Filesystem Hierarchy Standard 
+
+File  & directory 
+Ownership
+
+
+
+SUID SetUser IP 
+用這個檔案的onwe 來執行
+
+SGID 
+用這個檔案的group 身分  的起來
+
+
+Sticky Bit 
+檔案的onwer 和 root 才可以動他
+
+
+link:
+soft link  -->  symbolic link 
+
+hard link  --> 只到原始 檔案inode
+
+
+tine 
+Access  time 
+modi time 
+Change time meta changed 時
+Birth time  (create time)
+
+
+Process :
+PID 
+parent process 
+child process 
+ppid 0 
+pid 1 
+pid 2 
