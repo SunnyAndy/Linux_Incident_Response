@@ -91,6 +91,13 @@ etc/hosts
     hosts:files dns 
 
 
-
 lsof 
 list open file 
+
+
+
+下列是 第  rev3 樂高積木題組
+https://ctftime.org/writeup/11942
+https://raw.githubusercontent.com/ev3dev/lms-hacker-tools/refs/heads/master/EV3/ev3_dissector.lua
+
+
