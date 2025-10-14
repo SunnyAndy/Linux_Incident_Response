@@ -1,0 +1,18 @@
+chech the network
+ss -alnop 
+
+
+find  服務列
+find / -name "*.service"
+
+service   --status-all
+
+
+找自動開機
+ls -al /etc/rc*.d/
+
+
+
+
+sudo last -f /var/log/btmp 錯誤的登入紀錄
+sudo last -f /var/log/wtmp 成功的登入紀錄
