@@ -16,3 +16,7 @@ ls -al /etc/rc*.d/
 
 sudo last -f /var/log/btmp 錯誤的登入紀錄
 sudo last -f /var/log/wtmp 成功的登入紀錄
+
+
+
+PUT 和 201 Created 的情況: 伺服器使用 201 Created 成功建立
