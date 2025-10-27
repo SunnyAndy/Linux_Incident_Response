@@ -20,3 +20,8 @@ sudo last -f /var/log/wtmp 成功的登入紀錄
 
 
 PUT 和 201 Created 的情況: 伺服器使用 201 Created 成功建立
+
+
+
+如何 透過  proxmox 的方式把  qemu 給他 啟動 
+
